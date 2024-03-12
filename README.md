@@ -4,7 +4,7 @@ Set up a real web server!
 ![./images/apache.jpg](./images/apache.jpg)
 
 ## Deliverables
-* `uploads/apache_setup.sh`
+* `src/apache_setup.sh`
 * `uploads/iactuallytestedthis-apache_setup.png`
 * `uploads/wireshark_cap_web.pcapng` (this is not a PNG image file!)
 * `uploads/report.md`
@@ -33,7 +33,7 @@ Apache on Debian (just fyi)
 * https://wiki.debian.org/CGI
 
 How to use the `chmod` command:
-* https://www.cnsr.dev/index/Classes/Security/Content/19b-Permissions.html
+* https://cs-mst.gitlab.io/index/Classes/Security/Content/19b-Permissions.html
 
 Manual entries for commands you might use:
 ```bash
@@ -71,7 +71,7 @@ and then run the autograder only after refreshing each snapshot.
 ## Part 2: Wireshark for HTTP details!
 * Start up Wireshark, observe the traffic from queries to your new website.
 
-In the `report.md` answer these questions:
+In the `uploads/report.md` answer these questions:
 * Is the traffic TCP or UDP?
 * Follow a TCP "stream"
 * Can you read the HTTP data?
