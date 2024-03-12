@@ -1,5 +1,8 @@
 image: "git-docker.mst.edu/os/container"
 
+variables:
+  IS_PIPELINE: 1
+
 generaltester:
   script:
   - bash grade.sh

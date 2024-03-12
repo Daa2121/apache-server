@@ -215,7 +215,8 @@ unit_tests() {
         else
             grade_update "$filename" 0 0
             # https://stackoverflow.com/questions/20010199/how-to-determine-if-a-process-runs-inside-lxc-docker#20012536
-            if [ "$annoying_nodebug" = "g" ] || grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            # if ! [ "$annoying_nodebug" = "g" ] && ! grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
                 :
             else
                 if [ "$language" = "cpp" ]; then
@@ -304,7 +305,7 @@ stdio_tests() {
             # bash's no-op is most clear positive logic here...
             :
         else
-            if [ "$annoying_nodebug" = "g" ] || grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
                 :
             else
                 if [ "$language" = "cpp" ]; then
@@ -417,7 +418,7 @@ arg_tests() {
             # bash's no-op is most clear positive logic here...
             :
         else
-            if [ "$annoying_nodebug" = "g" ] || grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
                 :
             else
                 if [ "$language" = "cpp" ]; then
@@ -499,8 +500,7 @@ cfg_tests() {
             fi
         else
             grade_update "Your code CFG match with $testpath test" 0 0
-            # https://stackoverflow.com/questions/20010199/how-to-determine-if-a-process-runs-inside-lxc-docker#20012536
-            if [ "$annoying_nodebug" = "g" ] || grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
                 :
             else
                 if [ "$language" = "cpp" ]; then
@@ -558,8 +558,7 @@ doctest_tests() {
             grade_update "Doctests in function docstring" 100 0
         else
             grade_update "Doctests in function docstring" 0 0
-            # https://stackoverflow.com/questions/20010199/how-to-determine-if-a-process-runs-inside-lxc-docker#20012536
-            if [ "$annoying_nodebug" = "g" ] || grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+            if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
                 :
             else
                 if [ "$language" = "cpp" ]; then
@@ -613,7 +612,7 @@ if [ ! "$(uname)" = Linux ]; then
     exit 1
 fi
 
-if ! [ "$annoying_nodebug" = "g" ] && ! grep 'docker\|lxc' /proc/1/cgroup >/dev/null 2>&1; then
+if [ "$annoying_nodebug" = "g" ] || [[ "$IS_PIPELINE" ]] >/dev/null 2>&1; then
     if [ "$language" = "cpp" ]; then
         :
         # TODO Find a good C++ flowchart generator and run here

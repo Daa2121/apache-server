@@ -94,7 +94,7 @@ Set up server-side code execution, GET input
 * Firewall configuration will depend on your setup (you don't need this on localhost).
 
 ## Part 5: write up
-Write a `report.md` which includes
+Write a `uploads/report.md` which includes
 * the above screenshots, so that they are visible in the git-classses web interface, and 
 * descriptions of each screenshot
 * any extra notes about your setup.
