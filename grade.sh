@@ -91,6 +91,7 @@ custom_test_1_server() {
         custom_test_score=0
         return
     fi
+    rm -f wget*
 
     echo "================================================================================"
     echo -e "\n404 test"
@@ -147,6 +148,29 @@ custom_test_4_cgi_input() {
     echo -e "\ncgi bash test"
     timeout 3s curl localhost:80/cgi-bin/python_inputs.py?arg1=hey -o tests/your_outputs/py_input2.html &>/dev/null
     if ! diff -yZB tests/your_outputs/py_input2.html tests/goal_files/py_input2.html; then
+        custom_test_score=0
+        return
+    fi
+    custom_test_score=100
+}
+
+custom_test_5_permissions() {
+    custom_test_score=0
+    echo "================================================================================"
+    echo -e "\nPermissions"
+    if ! stat /var/www/cgi-bin | grep "drwxr-xr-x" &>/dev/null; then
+        custom_test_score=0
+        return
+    fi
+    if ! stat /var/www/html | grep "drwxr-xr-x" &>/dev/null; then
+        custom_test_score=0
+        return
+    fi
+    if ! stat /var/www/cgi-bin/python.py | grep "\-rwxr-xr-x" &>/dev/null; then
+        custom_test_score=0
+        return
+    fi
+    if ! stat /var/www/html/hello_world.html | grep "\-rw-r--r--" &>/dev/null; then
         custom_test_score=0
         return
     fi
