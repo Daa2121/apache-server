@@ -23,24 +23,30 @@ then
     # Enable and start Apache
     # Since systemctl is not on docker, 
     # run apache directly in the background.
-    echo "\nDelete this line and write your code"
+    /usr/sbin/httpd -DFOREGROUND &
 
     # Get the files to serve in the right place to be served:
-    # Use sudo here
-    echo "\nDelete this line and write your code"
-
+    DIR="/home/user/Assignments/CS3610/2024-SP-A-pa02_apache-daapkx/www/html"
+    sudo cp -r "$DIR"/. /var/www/html/
+    CGI="/home/user/Assignments/CS3610/2024-SP-A-pa02_apache-daapkx/www/cgi-bin"
+    sudo cp -r "$CGI"/. /var/www/cgi-bin/
     # Set permissions for web directories
-    echo "\nDelete this line and write your code"
+    sudo chmod -R 755 /var/www/html
+    sudo chmod -R 755 /var/www/html
 else
     # Apache on your local machine
     # (for easier development)
 
     # Enable and start Apache
-    echo "\nDelete this line and write your code"
+    sudo systemctl start httpd.service
 
     # Get the files to serve in the right place to be served:
-    echo "\nDelete this line and write your code"
-
+    DIR="/home/user/Assignments/CS3610/2024-SP-A-pa02_apache-daapkx/www/html"
+    sudo cp -r "$DIR"/. /var/www/html/
+    CGI="/home/user/Assignments/CS3610/2024-SP-A-pa02_apache-daapkx/www/cgi-bin"
+    sudo cp -r "$CGI"/. /var/www/cgi-bin/
     # Set permissions for web directories
-    echo "\nDelete this line and write your code"
+    sudo chmod -R 755 /var/www/html
+    sudo chmod -R 755 /var/www/html
+    
 fi
