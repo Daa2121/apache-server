@@ -26,9 +26,9 @@ then
     /usr/sbin/httpd -DFOREGROUND &
 
     # Get the files to serve in the right place to be served:
-    DIR="2024-SP-A-pa02_apache-daapkx/www/html"
+    DIR="your_code/www/html"
     sudo cp -r "$DIR"/. /var/www/html/
-    CGI="2024-SP-A-pa02_apache-daapkx/www/cgi-bin"
+    CGI="your_code/www/cgi-bin"
     sudo cp -r "$CGI"/. /var/www/cgi-bin/
     # Set permissions for web directories
     sudo chmod -R 755 /var/www/html
@@ -48,5 +48,5 @@ else
     # Set permissions for web directories
     sudo chmod -R 755 /var/www/html
     sudo chmod -R 755 /var/www/html
-    
 fi
+
